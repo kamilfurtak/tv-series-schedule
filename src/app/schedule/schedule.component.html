@@ -4,26 +4,7 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1>Select date:</h1>
         <div class="d-flex justify-content-center m-3">
-          <form class="form-inline">
-            <div class="form-group">
-              <div class="input-group">
-                <input
-                  class="form-control"
-                  placeholder="yyyy-mm-dd"
-                  name="datepicker"
-                  ngbDatepicker
-                  #ngbDatepickerTemplateReference="ngbDatepicker"
-                />
-                <div class="input-group-append">
-                  <button
-                    class="btn btn-outline-secondary calendar"
-                    (click)="ngbDatepickerTemplateReference.toggle()"
-                    type="button"
-                  ></button>
-                </div>
-              </div>
-            </div>
-          </form>
+          <app-date-picker> </app-date-picker>
         </div>
       </div>
     </div>
