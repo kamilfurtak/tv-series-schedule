@@ -7,13 +7,12 @@
       <input
         type="checkbox"
         ngbButton
-        [(ngModel)]="model[genre.toLowerCase()]"
+        [(ngModel)]="tvGenresFormModel[genre.toLowerCase()]"
         (change)="onGenreCheck()"
       />
       {{ genre }}
     </label>
   </div>
-  <pre>{{ model | json }}</pre>
+  <pre>{{ tvGenresFormModel | json }}</pre>
   <pre>{{ genresList$ | async | json }}</pre>
 </section>
->

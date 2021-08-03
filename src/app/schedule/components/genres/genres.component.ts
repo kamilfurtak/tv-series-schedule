@@ -13,7 +13,7 @@ import { TvGenresFormModel } from './genres.model';
   styleUrls: ['./genres.component.less'],
 })
 export class GenresComponent implements OnInit {
-  model: TvGenresFormModel = {};
+  tvGenresFormModel: TvGenresFormModel = {};
 
   genresList$: Observable<string[]> | undefined;
 
@@ -26,15 +26,17 @@ export class GenresComponent implements OnInit {
   }
 
   onGenreCheck(): void {
-    Object.entries(this.model).forEach(([key, value]) => {
-      console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
-    });
+    // Object.entries(this.model).forEach(([key, value]) => {
+    //   this.model[key.toLowerCase()] = true;
+    //
+    //   console.log(`${key} ${value}`);
+    // });
     // console.log($event);
-    // // this.genresList.forEach((genre) => {
-    // //   this.model[genre.toLowerCase()] = true;
-    // // });
+    // this.genresList.forEach((genre) => {
+    //   this.model[genre.toLowerCase()] = true;
+    // });
     this.store.dispatch(
-      new SeriesSchedule.SetCheckedTvGenres(_.cloneDeep(this.model))
+      new SeriesSchedule.SetCheckedTvGenres(_.cloneDeep(this.tvGenresFormModel))
     );
   }
 }

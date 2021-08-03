@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { skip } from 'rxjs/operators';
+import * as _ from 'lodash';
 import { TvSeriesSchedule } from './tv-series-schedule.model';
 import * as fromRoot from '../../../app.reducer';
 import * as fromSeriesSchedule from '../../store/reducers/series-schedule.reducer';

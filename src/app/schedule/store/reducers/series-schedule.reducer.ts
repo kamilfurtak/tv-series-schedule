@@ -2,7 +2,8 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as _ from 'lodash';
 import {
   DATE_SELECT,
-  SET_AVAILABLE_TV_SERIES_SCHEDULES, SET_CHECKED_TV_GENRES,
+  SET_AVAILABLE_TV_SERIES_SCHEDULES,
+  SET_CHECKED_TV_GENRES,
   TvSeriesActions,
 } from '../actions/series-schedule.actions';
 import * as fromRoot from '../../../app.reducer';
@@ -73,19 +74,19 @@ export const getAvailableTvGenres = createSelector(
 export const getAvailableTvSeriesSchedules = createSelector(
   getSeriesScheduleState,
   (state: TvSeriesScheduleState) => {
-    if (Object.keys(state.checkedTvGenres).length) {
+    const checkedGenres = [] as any;
+    for (const [key, value] of Object.entries(state.checkedTvGenres)) {
+      if (value) {
+        checkedGenres.push(key);
+      }
+    }
+    if (Object.keys(checkedGenres).length) {
       return state.availableTvSeriesSchedules.filter((tvSeriesSchedule) => {
         // eslint-disable-next-line no-underscore-dangle
         const genres = tvSeriesSchedule._embedded.show.genres.map((genre) =>
           genre.toLowerCase()
         );
-        const checkedGenres = [] as any;
-        for (const [key, value] of Object.entries(state.checkedTvGenres)) {
-          if (value) {
-            checkedGenres.push(key);
-          }
-        }
-        return _.intersection(genres, checkedGenres).length;
+        return _.isEqual(checkedGenres.sort(), genres.sort());
       });
     }
     return state.availableTvSeriesSchedules;
