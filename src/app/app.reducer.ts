@@ -11,7 +11,8 @@ export interface State {
 }
 
 export const reducers: ActionReducerMap<State> = {
-  ui: fromUi.uiReducer as any,
+  // @ts-ignore
+  ui: fromUi.uiReducer,
 };
 
 export const getUiState = createFeatureSelector<fromUi.State>('ui');

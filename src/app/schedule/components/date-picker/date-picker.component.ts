@@ -6,6 +6,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app.reducer';
+import * as SeriesSchedule from '../../store/actions/series-schedule.actions';
 
 @Component({
   selector: 'app-date-picker',
@@ -24,6 +25,8 @@ export class DatePickerComponent {
   }
 
   onDateSelect(selectedDate: NgbDate) {
-    console.log(this.toModel(selectedDate));
+    this.store.dispatch(
+      new SeriesSchedule.DateSelect(this.toModel(selectedDate))
+    );
   }
 }
