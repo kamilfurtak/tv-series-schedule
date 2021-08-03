@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as _ from 'lodash';
 import {
   DATE_SELECT,
-  SET_AVAILABLE_TV_SERIES_SCHEDULES,
+  SET_AVAILABLE_TV_SERIES_SCHEDULES, SET_CHECKED_TV_GENRES,
   TvSeriesActions,
 } from '../actions/series-schedule.actions';
 import * as fromRoot from '../../../app.reducer';
@@ -39,6 +39,11 @@ export function seriesScheduleReducer(
       return {
         ...state,
         availableTvSeriesSchedules: action.payload,
+      };
+    case SET_CHECKED_TV_GENRES:
+      return {
+        ...state,
+        checkedTvGenres: { ...state.checkedTvGenres, ...action.payload },
       };
     default: {
       return state;
