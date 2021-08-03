@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,7 +14,6 @@ import { reducers } from './app.reducer';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
