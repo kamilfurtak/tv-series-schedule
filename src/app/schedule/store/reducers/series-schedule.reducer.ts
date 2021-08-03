@@ -7,10 +7,7 @@ import {
 } from '../actions/series-schedule.actions';
 import * as fromRoot from '../../../app.reducer';
 import { TvSeriesSchedule } from '../../services/tv-series-schedule/tv-series-schedule.model';
-
-export interface TvGenresFormModel {
-  [key: string]: boolean;
-}
+import { TvGenresFormModel } from '../../components/genres/genres.model';
 
 export interface TvSeriesScheduleState {
   selectedDate: string;
@@ -54,6 +51,18 @@ export const getSeriesScheduleState =
 export const getSelectedDate = createSelector(
   getSeriesScheduleState,
   (state: TvSeriesScheduleState) => state.selectedDate
+);
+
+export const getAvailableTvGenres = createSelector(
+  getSeriesScheduleState,
+  (state: TvSeriesScheduleState) => [
+    ...new Set(
+      state.availableTvSeriesSchedules.flatMap(
+        // eslint-disable-next-line no-underscore-dangle
+        (tvSeriesSchedule) => tvSeriesSchedule._embedded.show.genres
+      )
+    ),
+  ]
 );
 
 export const getAvailableTvSeriesSchedules = createSelector(

@@ -1,0 +1,19 @@
+<section class="text-center container">
+  <div
+    class="btn-group btn-group-toggle"
+    *ngFor="let genre of genresList$ | async; let i = index"
+  >
+    <label class="btn-primary" ngbButtonLabel>
+      <input
+        type="checkbox"
+        ngbButton
+        [(ngModel)]="model[genre.toLowerCase()]"
+        (change)="onGenreCheck()"
+      />
+      {{ genre }}
+    </label>
+  </div>
+  <pre>{{ model | json }}</pre>
+  <pre>{{ genresList$ | async | json }}</pre>
+</section>
+>

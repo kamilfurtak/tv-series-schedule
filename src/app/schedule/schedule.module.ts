@@ -9,9 +9,15 @@ import { DatePickerComponent } from './components/date-picker/date-picker.compon
 import { seriesScheduleReducer } from './store/reducers/series-schedule.reducer';
 import { TvSeriesScheduleService } from './services/tv-series-schedule/tv-series-schedule.service';
 import { SeriesCardsComponent } from './components/series-cards/series-cards.component';
+import { GenresComponent } from './components/genres/genres.component';
 
 @NgModule({
-  declarations: [ScheduleComponent, DatePickerComponent, SeriesCardsComponent],
+  declarations: [
+    ScheduleComponent,
+    DatePickerComponent,
+    SeriesCardsComponent,
+    GenresComponent,
+  ],
   imports: [
     SharedModule,
     ScheduleRoutingModule,
