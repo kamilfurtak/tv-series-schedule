@@ -1,5 +1,7 @@
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
   DATE_SELECT,
+  SET_AVAILABLE_TV_SERIES_SCHEDULES,
   TvSeriesActions,
 } from '../actions/series-schedule.actions';
 import * as fromRoot from '../../../app.reducer';
@@ -26,8 +28,20 @@ export function seriesScheduleReducer(
         ...state,
         selectedDate: action.payload,
       };
+    case SET_AVAILABLE_TV_SERIES_SCHEDULES:
+      return {
+        ...state,
+        availableTvSeriesSchedules: action.payload,
+      };
     default: {
       return state;
     }
   }
 }
+
+export const getSeriesScheduleState =
+  createFeatureSelector<TvSeriesScheduleState>('seriesSchedule');
+export const getSelectedDate = createSelector(
+  getSeriesScheduleState,
+  (state: TvSeriesScheduleState) => state.selectedDate
+);

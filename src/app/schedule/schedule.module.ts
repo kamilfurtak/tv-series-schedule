@@ -7,6 +7,7 @@ import { ScheduleComponent } from './schedule.component';
 import { SharedModule } from '../shared/shared.module';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { seriesScheduleReducer } from './store/reducers/series-schedule.reducer';
+import { TvSeriesScheduleService } from './services/tv-series-schedule/tv-series-schedule.service';
 
 @NgModule({
   declarations: [ScheduleComponent, DatePickerComponent],
@@ -14,7 +15,8 @@ import { seriesScheduleReducer } from './store/reducers/series-schedule.reducer'
     SharedModule,
     ScheduleRoutingModule,
     NgbDatepickerModule,
-    StoreModule.forFeature('training', seriesScheduleReducer),
+    StoreModule.forFeature('seriesSchedule', seriesScheduleReducer),
   ],
+  providers: [TvSeriesScheduleService],
 })
 export class ScheduleModule {}
