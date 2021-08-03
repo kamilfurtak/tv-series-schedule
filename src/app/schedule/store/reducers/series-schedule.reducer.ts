@@ -71,22 +71,40 @@ export const getAvailableTvGenres = createSelector(
   ]
 );
 
-export const getAvailableTvSeriesSchedules = createSelector(
+export const getCheckedTvGenres = createSelector(
   getSeriesScheduleState,
   (state: TvSeriesScheduleState) => {
-    const checkedGenres = [] as any;
+    const checkedGenres: string[] = [];
     for (const [key, value] of Object.entries(state.checkedTvGenres)) {
       if (value) {
         checkedGenres.push(key);
       }
     }
-    if (Object.keys(checkedGenres).length) {
+    return checkedGenres;
+  }
+);
+
+export const getAvailableCheckedTvGenres = createSelector(
+  getAvailableTvGenres,
+  getCheckedTvGenres,
+  (availableTvGenres, checkedGenres) =>
+    _.intersection(
+      availableTvGenres.map((genre) => genre.toLowerCase()),
+      checkedGenres
+    )
+);
+
+export const getAvailableTvSeriesSchedules = createSelector(
+  getSeriesScheduleState,
+  getAvailableCheckedTvGenres,
+  (state: TvSeriesScheduleState, availableCheckedTvGenres) => {
+    if (Object.keys(availableCheckedTvGenres).length) {
       return state.availableTvSeriesSchedules.filter((tvSeriesSchedule) => {
         // eslint-disable-next-line no-underscore-dangle
         const genres = tvSeriesSchedule._embedded.show.genres.map((genre) =>
           genre.toLowerCase()
         );
-        return _.isEqual(checkedGenres.sort(), genres.sort());
+        return _.isEqual(availableCheckedTvGenres.sort(), genres.sort());
         // Alternative filter
         // return _.intersection(checkedGenres, genres).length;
       });
