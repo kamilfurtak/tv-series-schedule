@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import * as _ from 'lodash';
 import * as fromRoot from '../../../app.reducer';
 import * as fromSeriesSchedule from '../../store/reducers/series-schedule.reducer';
+import * as SeriesSchedule from '../../store/actions/series-schedule.actions';
 import { TvGenresFormModel } from './genres.model';
 
 @Component({
@@ -23,5 +25,16 @@ export class GenresComponent implements OnInit {
     );
   }
 
-  onGenreCheck(): void {}
+  onGenreCheck(): void {
+    Object.entries(this.model).forEach(([key, value]) => {
+      console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
+    });
+    // console.log($event);
+    // // this.genresList.forEach((genre) => {
+    // //   this.model[genre.toLowerCase()] = true;
+    // // });
+    this.store.dispatch(
+      new SeriesSchedule.SetCheckedTvGenres(_.cloneDeep(this.model))
+    );
+  }
 }
