@@ -1,13 +1,21 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import * as _ from 'lodash';
 import {
   DATE_SELECT,
   SET_AVAILABLE_TV_SERIES_SCHEDULES,
   TvSeriesActions,
 } from '../actions/series-schedule.actions';
 import * as fromRoot from '../../../app.reducer';
+import { TvSeriesSchedule } from '../../services/tv-series-schedule/tv-series-schedule.model';
+
+export interface TvGenresFormModel {
+  [key: string]: boolean;
+}
 
 export interface TvSeriesScheduleState {
   selectedDate: string;
+  availableTvSeriesSchedules: TvSeriesSchedule[];
+  checkedTvGenres: TvGenresFormModel;
 }
 
 export interface State extends fromRoot.State {
@@ -16,6 +24,8 @@ export interface State extends fromRoot.State {
 
 const initialState: TvSeriesScheduleState = {
   selectedDate: '',
+  availableTvSeriesSchedules: [],
+  checkedTvGenres: {},
 };
 
 export function seriesScheduleReducer(
@@ -44,4 +54,26 @@ export const getSeriesScheduleState =
 export const getSelectedDate = createSelector(
   getSeriesScheduleState,
   (state: TvSeriesScheduleState) => state.selectedDate
+);
+
+export const getAvailableTvSeriesSchedules = createSelector(
+  getSeriesScheduleState,
+  (state: TvSeriesScheduleState) => {
+    if (Object.keys(state.checkedTvGenres).length) {
+      return state.availableTvSeriesSchedules.filter((tvSeriesSchedule) => {
+        // eslint-disable-next-line no-underscore-dangle
+        const genres = tvSeriesSchedule._embedded.show.genres.map((genre) =>
+          genre.toLowerCase()
+        );
+        const checkedGenres = [] as any;
+        for (const [key, value] of Object.entries(state.checkedTvGenres)) {
+          if (value) {
+            checkedGenres.push(key);
+          }
+        }
+        return _.intersection(genres, checkedGenres).length;
+      });
+    }
+    return state.availableTvSeriesSchedules;
+  }
 );
