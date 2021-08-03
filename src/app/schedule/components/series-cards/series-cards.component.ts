@@ -17,4 +17,8 @@ export class SeriesCardsComponent {
       fromSeriesSchedule.getAvailableTvSeriesSchedules
     );
   }
+
+  identify(index: number, item: any): string {
+    return item ? item.id : undefined;
+  }
 }

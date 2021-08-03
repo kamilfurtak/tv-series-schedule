@@ -11,6 +11,7 @@ import { CustomDateParserFormatter } from './custom-date-parser-formatter';
 @NgModule({
   declarations: [],
   imports: [CommonModule, NgbModule],
+  exports: [CommonModule, NgbModule],
   providers: [
     { provide: NgbDateAdapter, useClass: CustomNgbDateAdapter },
     { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
