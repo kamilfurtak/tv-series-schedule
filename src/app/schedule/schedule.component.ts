@@ -10,6 +10,6 @@ export class ScheduleComponent implements OnInit {
   constructor(private tvSeriesScheduleService: TvSeriesScheduleService) {}
 
   ngOnInit(): void {
-    this.tvSeriesScheduleService.initTvSeriesSchedulesBySelectedDateListener();
+    // this.tvSeriesScheduleService.initTvSeriesSchedulesBySelectedDateListener();
   }
 }

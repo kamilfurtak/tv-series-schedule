@@ -28,7 +28,5 @@ export class DatePickerComponent {
     this.store.dispatch(
       new SeriesSchedule.DateSelect(this.toModel(selectedDate))
     );
-
-    this.store.dispatch(new SeriesSchedule.SetCheckedTvGenres({}));
   }
 }

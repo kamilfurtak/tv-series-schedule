@@ -13,6 +13,7 @@ import { SeriesCardsComponent } from './components/series-cards/series-cards.com
 import { GenresComponent } from './components/genres/genres.component';
 import { DetailsComponent } from './components/details/details.component';
 import { SeriesListComponent } from './components/series-list/series-list.component';
+import { SeriesScheduleEffects } from './store/effects/series-schedule.effect';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { SeriesListComponent } from './components/series-list/series-list.compon
     ScheduleRoutingModule,
     NgbDatepickerModule,
     StoreModule.forFeature('seriesSchedule', seriesScheduleReducer),
-    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([SeriesScheduleEffects]),
   ],
   providers: [TvSeriesScheduleService],
 })

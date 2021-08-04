@@ -26,15 +26,6 @@ export class GenresComponent implements OnInit {
   }
 
   onGenreCheck(): void {
-    // Object.entries(this.model).forEach(([key, value]) => {
-    //   this.model[key.toLowerCase()] = true;
-    //
-    //   console.log(`${key} ${value}`);
-    // });
-    // console.log($event);
-    // this.genresList.forEach((genre) => {
-    //   this.model[genre.toLowerCase()] = true;
-    // });
     this.store.dispatch(
       new SeriesSchedule.SetCheckedTvGenres(_.cloneDeep(this.tvGenresFormModel))
     );
