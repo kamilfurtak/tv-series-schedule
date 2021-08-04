@@ -9,6 +9,11 @@ const routes: Routes = [
     path: '',
     component: ScheduleComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'list',
+        pathMatch: 'full',
+      },
       { path: 'list', component: SeriesListComponent },
       { path: 'detail/:id', component: DetailsComponent },
     ],
