@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as fromSeriesSchedule from '../../store/reducers/series-schedule.reducer';
+import { Show } from '../../services/tv-series-schedule/tv-series-schedule.model';
 
 @Component({
   selector: 'app-details',
@@ -8,7 +12,13 @@ import { Location } from '@angular/common';
   styleUrls: ['./details.component.less'],
 })
 export class DetailsComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private location: Location) {}
+  showDetails$: Observable<Show | undefined> | undefined;
+
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+    private store: Store<fromSeriesSchedule.State>
+  ) {}
 
   ngOnInit(): void {
     this.getTvSeriesDetails();
@@ -16,7 +26,9 @@ export class DetailsComponent implements OnInit {
 
   getTvSeriesDetails(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(id);
+    this.showDetails$ = this.store.select(
+      fromSeriesSchedule.getShowDetailsById(id)
+    );
   }
 
   goBack(): void {

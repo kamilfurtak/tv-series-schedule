@@ -1,5 +1,10 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import {
+  createFeatureSelector,
+  createSelector,
+  MemoizedSelector,
+} from '@ngrx/store';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs';
 import {
   DATE_SELECT,
   SET_AVAILABLE_TV_SERIES_SCHEDULES,
@@ -7,7 +12,10 @@ import {
   TvSeriesActions,
 } from '../actions/series-schedule.actions';
 import * as fromRoot from '../../../app.reducer';
-import { TvSeriesSchedule } from '../../services/tv-series-schedule/tv-series-schedule.model';
+import {
+  Show,
+  TvSeriesSchedule,
+} from '../../services/tv-series-schedule/tv-series-schedule.model';
 import { TvGenresFormModel } from '../../components/genres/genres.model';
 
 export interface TvSeriesScheduleState {
@@ -112,3 +120,14 @@ export const getAvailableTvSeriesSchedules = createSelector(
     return state.availableTvSeriesSchedules;
   }
 );
+
+export const getShowDetailsById = (
+  id: number
+): MemoizedSelector<object, Show | undefined> =>
+  createSelector(
+    getAvailableTvSeriesSchedules,
+    (availableTvGenres) =>
+      // eslint-disable-next-line no-underscore-dangle
+      availableTvGenres.find((item) => item._embedded.show.id === id)?._embedded
+        .show
+  );

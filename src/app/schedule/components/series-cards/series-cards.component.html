@@ -47,7 +47,9 @@
                 <button
                   type="button"
                   class="btn btn-sm btn-outline-secondary"
-                  routerLink="/schedules/detail/{{ tvSeriesSchedule.id }}"
+                  routerLink="/schedules/detail/{{
+                    tvSeriesSchedule._embedded.show.id
+                  }}"
                 >
                   View details
                 </button>
