@@ -6,8 +6,6 @@ export const DATE_SELECT = '[UI] Date select';
 export const SET_AVAILABLE_TV_SERIES_SCHEDULES =
   '[TV] Set available tv series schedules';
 export const SET_CHECKED_TV_GENRES = '[TV] Set checked tv genres';
-export const LOAD_AVAILABLE_TV_SERIES_SCHEDULES =
-  '[TV] Load available tv series schedules';
 
 export class DateSelect implements Action {
   readonly type = DATE_SELECT;
@@ -25,10 +23,6 @@ export class SetCheckedTvGenres implements Action {
   readonly type = SET_CHECKED_TV_GENRES;
 
   constructor(public payload: TvGenresFormModel) {}
-}
-
-export class LoadAvailableTvSeriesSchedules implements Action {
-  readonly type = LOAD_AVAILABLE_TV_SERIES_SCHEDULES;
 }
 
 export type TvSeriesActions =
