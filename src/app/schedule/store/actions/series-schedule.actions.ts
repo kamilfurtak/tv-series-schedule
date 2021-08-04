@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-classes-per-file
 import { Action } from '@ngrx/store';
 import { TvSeriesSchedule } from '../../services/tv-series-schedule/tv-series-schedule.model';
 import { TvGenresFormModel } from '../../components/genres/genres.model';
