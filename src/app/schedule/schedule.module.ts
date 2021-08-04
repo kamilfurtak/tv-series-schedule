@@ -10,6 +10,7 @@ import { seriesScheduleReducer } from './store/reducers/series-schedule.reducer'
 import { TvSeriesScheduleService } from './services/tv-series-schedule/tv-series-schedule.service';
 import { SeriesCardsComponent } from './components/series-cards/series-cards.component';
 import { GenresComponent } from './components/genres/genres.component';
+import { DetailsComponent } from './components/details/details.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { GenresComponent } from './components/genres/genres.component';
     DatePickerComponent,
     SeriesCardsComponent,
     GenresComponent,
+    DetailsComponent,
   ],
   imports: [
     SharedModule,
