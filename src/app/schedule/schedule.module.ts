@@ -11,6 +11,7 @@ import { TvSeriesScheduleService } from './services/tv-series-schedule/tv-series
 import { SeriesCardsComponent } from './components/series-cards/series-cards.component';
 import { GenresComponent } from './components/genres/genres.component';
 import { DetailsComponent } from './components/details/details.component';
+import { SeriesListComponent } from './components/series-list/series-list.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DetailsComponent } from './components/details/details.component';
     SeriesCardsComponent,
     GenresComponent,
     DetailsComponent,
+    SeriesListComponent,
   ],
   imports: [
     SharedModule,
