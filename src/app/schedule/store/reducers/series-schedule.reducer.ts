@@ -114,7 +114,7 @@ export const getAvailableTvSeriesSchedules = createSelector(
         );
         return _.isEqual(availableCheckedTvGenres.sort(), genres.sort());
         // Alternative filter
-        // return _.intersection(checkedGenres, genres).length;
+        // return _.intersection(availableCheckedTvGenres, genres).length;
       });
     }
     return state.availableTvSeriesSchedules;
