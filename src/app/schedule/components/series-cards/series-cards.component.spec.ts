@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { provideMockStore } from '@ngrx/store/testing';
 import { SeriesCardsComponent } from './series-cards.component';
 
 describe('SeriesCardsComponent', () => {
@@ -8,9 +10,10 @@ describe('SeriesCardsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SeriesCardsComponent ]
-    })
-    .compileComponents();
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [provideMockStore()],
+      declarations: [SeriesCardsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { provideMockStore } from '@ngrx/store/testing';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatePickerComponent } from './date-picker.component';
 
 describe('DatePickerComponent', () => {
@@ -8,9 +11,10 @@ describe('DatePickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DatePickerComponent ]
-    })
-    .compileComponents();
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [provideMockStore(), NgbModule],
+      declarations: [DatePickerComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
