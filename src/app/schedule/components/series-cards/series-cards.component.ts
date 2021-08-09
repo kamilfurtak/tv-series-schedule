@@ -22,7 +22,7 @@ export class SeriesCardsComponent {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
   }
 
-  identify(index: number, item: any): string {
+  identify(index: number, item: any): number | undefined {
     return item ? item.id : undefined;
   }
 }

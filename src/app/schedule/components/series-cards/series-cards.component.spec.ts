@@ -33,4 +33,14 @@ describe('SeriesCardsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('identify', () => {
+    it('should return proper value, when item provided', () => {
+      expect(component.identify(0, { id: 1 })).toBe(1);
+    });
+
+    it('should return proper value, when item not provided', () => {
+      expect(component.identify(0, {})).toEqual(undefined);
+    });
+  });
 });
