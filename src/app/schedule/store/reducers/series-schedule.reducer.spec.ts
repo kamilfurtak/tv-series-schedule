@@ -1,8 +1,17 @@
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import * as fromSeriesSchedule from './series-schedule.reducer';
 import * as SeriesSchedule from '../actions/series-schedule.actions';
-import { TvSeriesScheduleState } from './series-schedule.reducer';
+import {
+  getAvailableTvSeriesSchedules,
+  getCheckedTvGenres,
+  getSeriesScheduleState,
+  TvSeriesScheduleState,
+} from './series-schedule.reducer';
 import { tvSeriesScheduleApiDataMock } from '../../services/tv-series-schedule/tv-series-schedule.mock';
 import { TvGenresFormModel } from '../../components/genres/genres.model';
+import { SeriesCardsComponent } from '../../components/series-cards/series-cards.component';
 
 describe('SeriesScheduleReducer', () => {
   describe('unknown action', () => {
@@ -71,7 +80,7 @@ describe('SeriesScheduleReducer', () => {
       const newState: TvSeriesScheduleState = {
         selectedDate: '',
         availableTvSeriesSchedules: [],
-        checkedTvGenres: {},
+        checkedTvGenres: { children: true },
       };
       const action = new SeriesSchedule.SetCheckedTvGenres(mockCheckedTvGenres);
 
@@ -82,6 +91,32 @@ describe('SeriesScheduleReducer', () => {
 
       expect(state).toEqual(newState);
       expect(state).not.toBe(newState);
+    });
+  });
+
+  describe('Selectors', () => {
+    it('should get checked tv genres', () => {
+      const initialState: TvSeriesScheduleState = {
+        selectedDate: '',
+        availableTvSeriesSchedules: tvSeriesScheduleApiDataMock,
+        checkedTvGenres: { children: true },
+      };
+      const result =
+        fromSeriesSchedule.getCheckedTvGenres.projector(initialState);
+
+      expect(result).toEqual(['children']);
+    });
+
+    it('should get available tv genres', () => {
+      const initialState: TvSeriesScheduleState = {
+        selectedDate: '',
+        availableTvSeriesSchedules: tvSeriesScheduleApiDataMock,
+        checkedTvGenres: { children: true },
+      };
+      const result =
+        fromSeriesSchedule.getAvailableTvGenres.projector(initialState);
+
+      expect(result).toEqual(['Children']);
     });
   });
 });
