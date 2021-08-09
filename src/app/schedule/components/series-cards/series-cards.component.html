@@ -20,7 +20,7 @@
         >
           <div class="card shadow-sm">
             <svg
-              *ngIf="!tvSeriesSchedule._embedded.show.image.medium"
+              *ngIf="!tvSeriesSchedule._embedded.show.image?.medium"
               class="bd-placeholder-img card-img-top"
               width="100%"
               height="225"
@@ -35,9 +35,9 @@
               <text x="50%" y="50%" fill="#eceeef" dy=".3em">NO THUMBNAIL</text>
             </svg>
             <img
-              class="card-img-top image-with"
-              *ngIf="tvSeriesSchedule._embedded.show.image.medium"
-              [attr.src]="tvSeriesSchedule._embedded.show.image.medium"
+              class="card-img-top"
+              *ngIf="tvSeriesSchedule._embedded.show.image?.medium"
+              [attr.src]="tvSeriesSchedule._embedded.show.image?.medium"
               [attr.alt]="tvSeriesSchedule.name"
             />
 

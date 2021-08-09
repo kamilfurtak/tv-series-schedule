@@ -25,7 +25,7 @@ export interface TvSeriesScheduleState {
 }
 
 export interface State extends fromRoot.State {
-  selectedDate: '';
+  seriesSchedule: TvSeriesScheduleState;
 }
 
 const initialState: TvSeriesScheduleState = {
