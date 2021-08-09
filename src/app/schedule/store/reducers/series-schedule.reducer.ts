@@ -4,7 +4,6 @@ import {
   MemoizedSelector,
 } from '@ngrx/store';
 import * as _ from 'lodash';
-import { Observable } from 'rxjs';
 import {
   DATE_SELECT,
   SET_AVAILABLE_TV_SERIES_SCHEDULES,
@@ -28,7 +27,7 @@ export interface State extends fromRoot.State {
   seriesSchedule: TvSeriesScheduleState;
 }
 
-const initialState: TvSeriesScheduleState = {
+export const initialState: TvSeriesScheduleState = {
   selectedDate: '',
   availableTvSeriesSchedules: [],
   checkedTvGenres: {},
