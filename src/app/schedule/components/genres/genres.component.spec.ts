@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { Observable, of } from 'rxjs';
 import { GenresComponent } from './genres.component';
 import { tvSeriesScheduleApiDataMock } from '../../services/tv-series-schedule/tv-series-schedule.mock';
 import * as fromSeriesSchedule from '../../store/reducers/series-schedule.reducer';

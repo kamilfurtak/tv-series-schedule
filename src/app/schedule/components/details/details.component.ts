@@ -16,7 +16,7 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location,
+    public location: Location,
     private store: Store<fromSeriesSchedule.State>
   ) {}
 
